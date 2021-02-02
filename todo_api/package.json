@@ -1,0 +1,26 @@
+{
+  "name": "todo_api",
+  "version": "1.0.0",
+  "description": "Simple todo api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec @babel-node index.js",
+    "build": "babel src -d build",
+    "serve": "node build/index.js"
+  },
+  "author": "Talwinder Singh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.7"
+  }
+}
