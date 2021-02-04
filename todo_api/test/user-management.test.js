@@ -15,7 +15,7 @@ describe("User Management", () => {
     await UsersDAO.deleteUser(testUser.email)
   })
 
-  test("it can add a new user to the database", async () => {
+  test("Can add a new user to the database", async () => {
     const actual = await UsersDAO.addUser(testUser)
     expect(actual.success).toBeTruthy()
     expect(actual.error).toBeUndefined()
@@ -26,7 +26,7 @@ describe("User Management", () => {
     expect(user).toEqual(testUser)
   })
 
-  test("it returns an error when trying to register duplicate user", async () => {
+  test("Returns an error when trying to register duplicate user", async () => {
     const expected = "A user with the given email already exists."
     const actual = await UsersDAO.addUser(testUser)
     expect(actual.success).toBeUndefined()
