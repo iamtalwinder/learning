@@ -91,7 +91,7 @@ export default class UserController {
     }
   }
 
-  static async login(req, res, next) {
+  static async login(req, res) {
     try {
       const { email, password } = req.body
 
@@ -123,6 +123,39 @@ export default class UserController {
     } catch (e) {
       res.status(400).send({ error: e })
       return
+    }
+  }
+
+  static async delete(req, res) {
+    try {
+      let { password } = req.body
+
+      if (!password || typeof password !== "string") {
+        res.status(400).json({ error: "Bad password format, expected string." })
+        return
+      }
+
+      const userClaim = req.userClaim
+
+      const user = new User(await UsersDAO.getUser(userClaim.email))
+
+      if (!(await user.comparePassword(password))) {
+        res.status(401).send({ error: "Make sure your password is correct." })
+        return
+      }
+
+      const deleteResult = await UsersDAO.deleteUser(userClaim.email)
+
+      const { error } = deleteResult
+
+      if (error) {
+        res.status(500).send({ error })
+        return
+      }
+
+      res.status(200).send(deleteResult)
+    } catch (e) {
+      res.status(500).send(e)
     }
   }
 }
