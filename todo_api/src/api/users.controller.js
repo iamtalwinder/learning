@@ -90,4 +90,39 @@ export default class UserController {
       res.status(500).send({ error: e })
     }
   }
+
+  static async login(req, res, next) {
+    try {
+      const { email, password } = req.body
+
+      if (!email || typeof email !== "string") {
+        res.status(400).send({ error: "Bad email format, expected string." })
+        return
+      }
+
+      if (!password || typeof password !== "string") {
+        res.status(400).send({ error: "Bad password format, expected string." })
+        return
+      }
+
+      let userData = await UsersDAO.getUser(email)
+
+      if (!userData) {
+        res.status(401).send({ error: "Make sure your email is correct." })
+        return
+      }
+
+      const user = new User(userData)
+
+      if (!(await user.comparePassword(password))) {
+        res.status(401).send({ error: "Make sure your password is correct." })
+        return
+      }
+
+      res.status(200).send({ auth_token: user.encoded(), info: user.toJson() })
+    } catch (e) {
+      res.status(400).send({ error: e })
+      return
+    }
+  }
 }
