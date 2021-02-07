@@ -5,14 +5,15 @@ import UsersDAO from "../dao/usersDAO"
 const hashPassword = async (password) => await bcrypt.hash(password, 10)
 
 export class User {
-  constructor({ name, email, password } = {}) {
+  constructor({ _id, name, email, password } = {}) {
+    this._id = _id
     this.name = name
     this.email = email
     this.password = password
   }
 
   toJson() {
-    return { name: this.name, email: this.email }
+    return { _id: this._id, name: this.name, email: this.email }
   }
 
   async comparePassword(plainText) {
