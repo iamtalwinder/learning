@@ -55,12 +55,59 @@ export default class TodosDAO {
    * Update a todo by its id
    * @param {string} todoId - The _id of a todo in the 'todos' collection
    * @param {string} userId - The _id of a user in the 'users' collection
-   * @param {string} todoTitle - Todo title
    * @param {date} date - Current date
-   * @param {bool} finished - True if todo is finished
    * @returns {DAOResponse} Returns an object with either DB response or "error"
    */
-  static async updateTodo(todoId, userId, todoTitle, date, finished = false) {
+  static async markAsFinished(todoId, userId, date) {
+    try {
+      return await todos.updateOne(
+        { _id: ObjectId(todoId), user_id: ObjectId(userId) },
+        {
+          $set: {
+            lastUpdatedOn: date,
+            finishedOn: date,
+          },
+        },
+      )
+    } catch (e) {
+      console.error(`Unable to update todo: ${e}`)
+      return { error: e }
+    }
+  }
+
+  /**
+   * Update a todo by its id
+   * @param {string} todoId - The _id of a todo in the 'todos' collection
+   * @param {string} userId - The _id of a user in the 'users' collection
+   * @param {date} date - Current date
+   * @returns {DAOResponse} Returns an object with either DB response or "error"
+   */
+  static async markAsUnfinished(todoId, userId, date) {
+    try {
+      return await todos.updateOne(
+        { _id: ObjectId(todoId), user_id: ObjectId(userId) },
+        {
+          $set: {
+            lastUpdatedOn: date,
+            finishedOn: null,
+          },
+        },
+      )
+    } catch (e) {
+      console.error(`Unable to update todo: ${e}`)
+      return { error: e }
+    }
+  }
+
+  /**
+   * Update a todo by its id
+   * @param {string} todoId - The _id of a todo in the 'todos' collection
+   * @param {string} userId - The _id of a user in the 'users' collection
+   * @param {date} date - Current date
+   * @param {string} todoTitle - Todo title
+   * @returns {DAOResponse} Returns an object with either DB response or "error"
+   */
+  static async changeTitle(todoId, userId, date, todoTitle) {
     try {
       return await todos.updateOne(
         { _id: ObjectId(todoId), user_id: ObjectId(userId) },
@@ -68,7 +115,6 @@ export default class TodosDAO {
           $set: {
             title: todoTitle,
             lastUpdatedOn: date,
-            finishedOn: finished ? date : null,
           },
         },
       )
