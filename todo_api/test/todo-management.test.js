@@ -45,36 +45,65 @@ describe("Todo Management", () => {
   })
 
   test("Can only update a todo if user created it", async () => {
-    const updateTodoResult = await TodosDAO.updateTodo(
+    const updateTodoResult = await TodosDAO.changeTitle(
       todo._id,
       newUserId,
-      "title",
       new Date(),
+      "title",
     )
     expect(updateTodoResult.modifiedCount).toBe(0)
   })
 
-  test("Can update a todo", async () => {
+  test("Can mark a todo as finished", async () => {
     const date = new Date()
 
-    const expectedUpdatedTodo = {
-      ...todo,
-      title: "title",
-      lastUpdatedOn: date,
-      finishedOn: date,
-    }
+    todo.lastUpdatedOn = date
+    todo.finishedOn = date
 
-    const updateTodoResult = await TodosDAO.updateTodo(
-      expectedUpdatedTodo._id,
-      expectedUpdatedTodo.user_id,
-      expectedUpdatedTodo.title,
+    const updateTodoResult = await TodosDAO.markAsFinished(
+      todo._id,
+      todo.user_id,
       date,
-      true,
     )
 
     expect(updateTodoResult.modifiedCount).toBe(1)
     const actualUpdatedTodo = await TodosDAO.getTodoById(todo._id)
-    expect(actualUpdatedTodo).toEqual(expectedUpdatedTodo)
+    expect(actualUpdatedTodo).toEqual(todo)
+  })
+
+  test("Can mark a todo as unfinished", async () => {
+    const date = new Date()
+
+    todo.lastUpdatedOn = date
+    todo.finishedOn = null
+
+    const updateTodoResult = await TodosDAO.markAsUnfinished(
+      todo._id,
+      todo.user_id,
+      date,
+    )
+
+    expect(updateTodoResult.modifiedCount).toBe(1)
+    const actualUpdatedTodo = await TodosDAO.getTodoById(todo._id)
+    expect(actualUpdatedTodo).toEqual(todo)
+  })
+
+  test("Can change title", async () => {
+    const date = new Date()
+
+    todo.title = "new title"
+    todo.lastUpdatedOn = date
+
+    const updateTodoResult = await TodosDAO.changeTitle(
+      todo._id,
+      todo.user_id,
+      date,
+      todo.title,
+    )
+
+    expect(updateTodoResult.modifiedCount).toBe(1)
+    const actualUpdatedTodo = await TodosDAO.getTodoById(todo._id)
+    expect(actualUpdatedTodo).toEqual(todo)
   })
 
   test("Can only delete a todo if user created it", async () => {
