@@ -65,4 +65,13 @@ export default class UserController {
       res.status(500).send({ error: e })
     }
   }
+
+  static async getTodos(req, res) {
+    try {
+      const userId = req.userClaim._id
+      res.status(200).send(await TodosDAO.getTodosByUserId(userId))
+    } catch (e) {
+      res.status(500).send({ error: e })
+    }
+  }
 }

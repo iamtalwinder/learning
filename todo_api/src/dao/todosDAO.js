@@ -28,6 +28,19 @@ export default class TodosDAO {
   }
 
   /**
+   * Gets a todos by user_id
+   * @param {string} userId - The user_id of a todo in the 'todos' collection
+   * @returns {DAOResponse} Returns either array of todos or nothing
+   */
+  static async getTodosByUserId(userId) {
+    try {
+      return (await todos.find({ user_id: ObjectId(userId) })).toArray()
+    } catch (e) {
+      return null
+    }
+  }
+
+  /**
    * Adds a todo to the `todos` collection
    * @param {string} userId - The _id of a user in the 'users' collection
    * @param {string} todoTitle - Todo title

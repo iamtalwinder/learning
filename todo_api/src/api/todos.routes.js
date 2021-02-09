@@ -11,5 +11,6 @@ router.route("/delete-todo").delete(todosCtrl.deleteTodo)
 router.route("/mark-as-finished").patch(todosCtrl.markAsFinished)
 router.route("/mark-as-unfinished").patch(todosCtrl.markAsFinished)
 router.route("/change-title").patch(todosCtrl.changeTitle)
+router.route("/get-todos").get(todosCtrl.getTodos)
 
 export default router
