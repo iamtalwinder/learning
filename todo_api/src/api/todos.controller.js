@@ -53,4 +53,16 @@ export default class UserController {
       res.status(500).send({ error: e })
     }
   }
+
+  static async changeTitle(req, res) {
+    try {
+      const { todoId, todoTitle } = req.body
+      const userId = req.userClaim._id
+      res
+        .status(200)
+        .send(await TodosDAO.changeTitle(todoId, userId, new Date(), todoTitle))
+    } catch (e) {
+      res.status(500).send({ error: e })
+    }
+  }
 }
