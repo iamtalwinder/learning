@@ -29,4 +29,16 @@ export default class UserController {
       res.status(500).send({ error: e })
     }
   }
+
+  static async markAsFinished(req, res) {
+    try {
+      const { todoId } = req.body
+      const userId = req.userClaim._id
+      res
+        .status(200)
+        .send(await TodosDAO.markAsFinished(todoId, userId, new Date()))
+    } catch (e) {
+      res.status(500).send({ error: e })
+    }
+  }
 }
