@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import Button from "./components/button";
 import * as ImagePicker from "expo-image-picker";
 import * as Sharing from "expo-sharing";
 
@@ -38,9 +39,7 @@ export default function App() {
           source={{ uri: selectedImage.localUri }}
           style={styles.thumbnail}
         />
-        <TouchableOpacity onPress={openShareDialogAsync} style={styles.button}>
-          <Text style={styles.buttonText}>Share this photo</Text>
-        </TouchableOpacity>
+        <Button onPress={openShareDialogAsync}>Share this photo</Button>
       </View>
     );
   }
@@ -55,9 +54,7 @@ export default function App() {
         To share a photo from your phone with a friend, just press the button
         below!
       </Text>
-      <TouchableOpacity onPress={openImagePickerAsync} style={styles.button}>
-        <Text style={styles.buttonText}>Pick a photo</Text>
-      </TouchableOpacity>
+      <Button onPress={openImagePickerAsync}>Pick a photo</Button>
     </View>
   );
 }
