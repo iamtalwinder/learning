@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "react_native_test",
-    "slug": "react_native_test",
+    "name": "image_share",
+    "slug": "image_share",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
