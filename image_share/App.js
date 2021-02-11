@@ -32,6 +32,10 @@ export default function App() {
     await Sharing.shareAsync(selectedImage.localUri);
   };
 
+  let clearPhoto = () => {
+    setSelectedImage(null);
+  };
+
   if (selectedImage !== null) {
     return (
       <View style={styles.container}>
@@ -40,6 +44,7 @@ export default function App() {
           style={styles.thumbnail}
         />
         <Button onPress={openShareDialogAsync}>Share this photo</Button>
+        <Button onPress={clearPhoto}>Clear</Button>
       </View>
     );
   }
@@ -75,15 +80,6 @@ const styles = StyleSheet.create({
     color: "#888",
     fontSize: 18,
     marginHorizontal: 15,
-  },
-  button: {
-    backgroundColor: "blue",
-    padding: 20,
-    borderRadius: 5,
-  },
-  buttonText: {
-    fontSize: 20,
-    color: "#fff",
   },
   thumbnail: {
     width: 300,

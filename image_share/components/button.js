@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     backgroundColor: "blue",
     padding: 20,
     borderRadius: 5,
+    marginTop: "5px",
   },
   buttonText: {
     fontSize: 20,
