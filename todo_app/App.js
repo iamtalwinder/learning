@@ -1,31 +1,11 @@
-import React, { useState } from "react";
-import { StyleSheet, View, TextInput } from "react-native";
+import React from "react";
+import Login from "./pages/login";
+import { NativeRouter, Route } from "react-router-native";
 
 export default function App() {
-  const [text, setText] = useState("");
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        onChangeText={(text) => setText(text)}
-        value={text}
-        placeholder="Email"
-      />
-    </View>
+    <NativeRouter>
+      <Route exact path="/" component={Login} />
+    </NativeRouter>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-    padding: "10px",
-  },
-
-  input: {
-    borderColor: "gray",
-    borderWidth: 1,
-    borderRadius: "20px",
-    padding: "5px",
-    outline: "none",
-  },
-});
