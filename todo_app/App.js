@@ -1,5 +1,5 @@
 import React from "react";
-import { Login, Register, Home } from "./pages";
+import { Login, Register, Home } from "./src/pages";
 import { NativeRouter, Route } from "react-router-native";
 
 export default function App() {
