@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { Link as RouterLink } from "react-router-native";
 
 const Button = styled.TouchableOpacity`
-  background-color: none;
+  background-color: #ffffff;
   padding: 8px;
   margin-top: 15px;
   border-radius: 20px;
