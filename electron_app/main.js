@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Notification } = require("electron");
+const { app, BrowserWindow } = require("electron");
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -12,15 +12,9 @@ function createWindow() {
   win.loadFile("index.html");
 }
 
-function showNotification() {
-  const notification = {
-    title: "Basic Notification",
-    body: "Notification from the Main process",
-  };
-  new Notification(notification).show();
-}
+app.whenReady().then(createWindow);
 
-app.whenReady().then(createWindow).then(showNotification);
+app.addRecentDocument("index.html");
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
