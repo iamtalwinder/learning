@@ -10,11 +10,10 @@ function createWindow() {
   });
 
   win.loadFile("index.html");
+  win.setProgressBar(0.5);
 }
 
 app.whenReady().then(createWindow);
-
-app.addRecentDocument("index.html");
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
