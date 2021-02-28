@@ -1,4 +1,4 @@
-const { app, BrowserWindow, globalShortcut } = require("electron");
+const { app, BrowserWindow } = require("electron");
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -10,12 +10,6 @@ function createWindow() {
   });
 
   win.loadFile("index.html");
-  win.webContents.on("before-input-event", (event, input) => {
-    if (input.control && input.key.toLowerCase() === "i") {
-      console.log("Pressed Control+I");
-      event.preventDefault();
-    }
-  });
 }
 
 app.whenReady().then(createWindow);
