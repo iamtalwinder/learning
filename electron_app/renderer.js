@@ -1,8 +1,6 @@
-const alertOnlineStatus = () => {
-  window.alert(navigator.onLine ? "online" : "offline");
+const { ipcRenderer } = require("electron");
+
+document.getElementById("drag").ondragstart = (event) => {
+  event.preventDefault();
+  ipcRenderer.send("ondragstart", "D:/JS/ChatApp/README.md");
 };
-
-window.addEventListener("online", alertOnlineStatus);
-window.addEventListener("offline", alertOnlineStatus);
-
-alertOnlineStatus();
