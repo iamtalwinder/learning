@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, Menu, MenuItem } = require("electron");
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -12,16 +12,24 @@ function createWindow() {
   win.loadFile("index.html");
 }
 
-app.setUserTasks([
-  {
-    program: process.execPath,
-    arguments: "--new-window",
-    iconPath: process.execPath,
-    iconIndex: 0,
-    title: "New Window",
-    description: "Create a new window",
-  },
-]);
+const menu = new Menu();
+menu.append(
+  new MenuItem({
+    label: "Electron",
+    submenu: [
+      {
+        role: "help",
+        accelerator:
+          process.platform === "darwin" ? "Alt+Cmd+I" : "Alt+Shift+I",
+        click: () => {
+          console.log("Electron rocks!");
+        },
+      },
+    ],
+  })
+);
+
+Menu.setApplicationMenu(menu);
 
 app.whenReady().then(createWindow);
 
