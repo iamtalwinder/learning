@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, MenuItem } = require("electron");
+const { app, BrowserWindow, globalShortcut } = require("electron");
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -12,26 +12,14 @@ function createWindow() {
   win.loadFile("index.html");
 }
 
-const menu = new Menu();
-menu.append(
-  new MenuItem({
-    label: "Electron",
-    submenu: [
-      {
-        role: "help",
-        accelerator:
-          process.platform === "darwin" ? "Alt+Cmd+I" : "Alt+Shift+I",
-        click: () => {
-          console.log("Electron rocks!");
-        },
-      },
-    ],
+app
+  .whenReady()
+  .then(() => {
+    globalShortcut.register("Alt+CommandOrControl+I", () => {
+      console.log("Electron loves global shortcuts!");
+    });
   })
-);
-
-Menu.setApplicationMenu(menu);
-
-app.whenReady().then(createWindow);
+  .then(createWindow);
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
