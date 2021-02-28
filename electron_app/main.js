@@ -10,16 +10,15 @@ function createWindow() {
   });
 
   win.loadFile("index.html");
+  win.webContents.on("before-input-event", (event, input) => {
+    if (input.control && input.key.toLowerCase() === "i") {
+      console.log("Pressed Control+I");
+      event.preventDefault();
+    }
+  });
 }
 
-app
-  .whenReady()
-  .then(() => {
-    globalShortcut.register("Alt+CommandOrControl+I", () => {
-      console.log("Electron loves global shortcuts!");
-    });
-  })
-  .then(createWindow);
+app.whenReady().then(createWindow);
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
