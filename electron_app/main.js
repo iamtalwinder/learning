@@ -10,8 +10,18 @@ function createWindow() {
   });
 
   win.loadFile("index.html");
-  win.setProgressBar(0.5);
 }
+
+app.setUserTasks([
+  {
+    program: process.execPath,
+    arguments: "--new-window",
+    iconPath: process.execPath,
+    iconIndex: 0,
+    title: "New Window",
+    description: "Create a new window",
+  },
+]);
 
 app.whenReady().then(createWindow);
 
