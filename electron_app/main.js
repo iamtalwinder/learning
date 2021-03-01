@@ -1,10 +1,23 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, nativeTheme } = require("electron");
 
 ipcMain.on("ondragstart", (event, filePath) => {
   event.sender.startDrag({
     file: filePath,
     icon: "../image_share/assets/icon.png",
   });
+});
+
+ipcMain.handle("dark-mode:toggle", () => {
+  if (nativeTheme.shouldUseDarkColors) {
+    nativeTheme.themeSource = "light";
+  } else {
+    nativeTheme.themeSource = "dark";
+  }
+  return nativeTheme.shouldUseDarkColors;
+});
+
+ipcMain.handle("dark-mode:system", () => {
+  nativeTheme.themeSource = "system";
 });
 
 function createWindow() {
