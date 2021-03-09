@@ -1,10 +1,18 @@
 import React from "react";
-import Spinner from "./components/Spinner";
+import Button from "./components/Button";
 
 function App() {
   return (
     <div>
-      <Spinner />
+      <Button
+        style={{
+          background: "white",
+          border: "1px solid #ccc",
+          color: "black",
+        }}
+      >
+        Edit Profile
+      </Button>
     </div>
   );
 }
