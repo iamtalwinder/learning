@@ -3,7 +3,7 @@ import { useReducer, useEffect } from "react";
 function getSavedValue<StateType>(
   key: string,
   initialState: StateType,
-  init: (arg: StateType) => StateType
+  init?: (arg: StateType) => StateType
 ): StateType {
   const savedValue: StateType | null = JSON.parse(
     localStorage.getItem(key) as string
@@ -20,11 +20,11 @@ function getSavedValue<StateType>(
   return initialState;
 }
 
-export default function usePersistedState<StateType>(
+export default function usePersistedState<StateType, ActionType>(
   key: string,
-  reducer: React.ReducerWithoutAction<any>,
+  reducer: (state: StateType, action: ActionType) => StateType,
   initialState: StateType,
-  init: (arg: StateType) => StateType
+  init?: (arg: StateType) => StateType
 ): any {
   const [state, dispatch] = useReducer(reducer, initialState, () => {
     return getSavedValue<StateType>(key, initialState, init);
