@@ -1,0 +1,12 @@
+{
+	"manifest_version": 1,
+	"id": "1234567812345678",
+	"app_min_version": "1.7",
+	"version": "1.0.0",
+	"name": "toc-plugin",
+	"description": "toc-plugin",
+	"author": "Talwinder Singh",
+	"homepage_url": "",
+	"repository_url": "",
+	"keywords": []
+}
