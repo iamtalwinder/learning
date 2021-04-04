@@ -14,6 +14,7 @@
     <a href="form_handling.php">Form handling</a><br />
     <a href="form_validation.php">Form validation</a><br />
     <a href="include.php">Include</a><br />
+    <a href="file_handling.php">File handling</a><br />
 
 </body>
 
