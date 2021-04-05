@@ -16,6 +16,7 @@
     <a href="include.php">Include</a><br />
     <a href="file_handling.php">File handling</a><br />
     <a href="uploads/upload.php">Upload</a><br />
+    <a href="cookie.php">Cookie</a><br />
 
 </body>
 
