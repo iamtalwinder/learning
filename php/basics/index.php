@@ -17,6 +17,7 @@
     <a href="file_handling.php">File handling</a><br />
     <a href="uploads/upload.php">Upload</a><br />
     <a href="cookie.php">Cookie</a><br />
+    <a href="session_1.php">Sessions</a><br />
 
 </body>
 
