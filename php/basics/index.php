@@ -19,6 +19,7 @@
     <a href="cookie.php">Cookie</a><br />
     <a href="session_1.php">Sessions</a><br />
     <a href="callback.php">Callback</a><br />
+    <a href="namespace">Namespace</a><br />
 
 </body>
 
