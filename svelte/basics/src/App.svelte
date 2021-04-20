@@ -1,7 +1,7 @@
 <script>
-	import Assignment from "./Assignment.svelte";
+	import Declarations from "./Declarations.svelte";
 </script>
 
 
-<Assignment />
+<Declarations />
 
