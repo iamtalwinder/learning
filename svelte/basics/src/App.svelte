@@ -1,5 +1,5 @@
 <script>
-	import Statements from "./Statements.svelte";
+	import Statements from "./Reactivity/Statements.svelte";
 </script>
 
 
