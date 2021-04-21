@@ -1,7 +1,7 @@
 <script>
-	import Declarations from "./Declarations.svelte";
+	import Statements from "./Statements.svelte";
 </script>
 
 
-<Declarations />
+<Statements />
 
