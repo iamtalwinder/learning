@@ -1,7 +1,7 @@
 <script>
-	import Statements from "./Reactivity/Statements.svelte";
+	import ComponentEvent from "./event/ComponentEvent.svelte";
 </script>
 
 
-<Statements />
+<ComponentEvent />
 
