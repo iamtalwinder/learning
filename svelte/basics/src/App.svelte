@@ -1,7 +1,8 @@
 <script>
-	import ComponentEvent from "./event/ComponentEvent.svelte";
+import GroupInput from "./binding/GroupInput.svelte";
+
 </script>
 
 
-<ComponentEvent />
+<GroupInput />
 
